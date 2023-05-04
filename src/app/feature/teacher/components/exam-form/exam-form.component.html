@@ -2,8 +2,8 @@
   <mat-card class="exam-card">
     <mat-card-content>
       <form [formGroup]="examForm" (ngSubmit)="submit()">
-        <p>
-          <mat-form-field>
+        <p class="exam-title">
+          <mat-form-field class="exam-subject">
             <input
               type="text"
               matInput
@@ -11,6 +11,16 @@
               formControlName="subjectName"
             />
           </mat-form-field>
+          <ng-container *ngIf="mode === 'view'">
+            <button
+              type="button"
+              (click)="editExam()"
+              mat-raised-button
+              color="primary"
+            >
+              Edit Exam
+            </button>
+          </ng-container>
         </p>
 
         <ng-container formArrayName="questions">
@@ -27,24 +37,27 @@
                     formControlName="question"
                   />
                 </mat-form-field>
-                <button
-                  mat-fab
-                  color="warn"
-                  type="button"
-                  class="add-question-btn"
-                  (click)="removeQuestion(i)"
-                >
-                  -
-                </button>
-                <button
-                  mat-fab
-                  color="primary"
-                  type="button"
-                  class="add-question-btn"
-                  (click)="addQuestion()"
-                >
-                  +
-                </button>
+                <ng-container *ngIf="mode !== 'view'">
+                  <button
+                    mat-fab
+                    color="warn"
+                    *ngIf="i"
+                    type="button"
+                    class="add-question-btn"
+                    (click)="removeQuestion(i)"
+                  >
+                    -
+                  </button>
+                  <button
+                    mat-fab
+                    color="primary"
+                    type="button"
+                    class="add-question-btn"
+                    (click)="addQuestion()"
+                  >
+                    +
+                  </button>
+                </ng-container>
               </div>
 
               <mat-radio-group
@@ -130,39 +143,42 @@
                   [formControlName]="i"
                 />
               </mat-form-field>
-              <button
-                mat-fab
-                *ngIf="i"
-                color="warn"
-                type="button"
-                aria-label="Example icon button with a delete icon"
-                (click)="removeNote(i)"
-              >
-                -
-              </button>
-              <button
-                mat-fab
-                color="primary"
-                type="button"
-                aria-label="Example icon button with a delete icon"
-                (click)="addNote()"
-              >
-                +
-              </button>
+              <ng-container *ngIf="mode !== 'view'">
+                <button
+                  mat-fab
+                  *ngIf="i"
+                  color="warn"
+                  type="button"
+                  aria-label="Example icon button with a delete icon"
+                  (click)="removeNote(i)"
+                >
+                  -
+                </button>
+                <button
+                  mat-fab
+                  color="primary"
+                  type="button"
+                  aria-label="Example icon button with a delete icon"
+                  (click)="addNote()"
+                >
+                  +
+                </button>
+              </ng-container>
             </p>
           </ng-container>
         </ng-container>
-
-        <div class="button">
-          <button
-            type="submit"
-            [disabled]="examForm.invalid"
-            mat-raised-button
-            color="primary"
-          >
-            Create Exam
-          </button>
-        </div>
+        <ng-container *ngIf="mode !== 'view'">
+          <div class="button">
+            <button
+              type="submit"
+              [disabled]="examForm.invalid"
+              mat-raised-button
+              color="primary"
+            >
+              {{ mode === "create" ? "Create" : "Update" }} Exam
+            </button>
+          </div>
+        </ng-container>
       </form>
     </mat-card-content>
   </mat-card>

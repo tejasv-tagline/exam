@@ -2,6 +2,16 @@ mat-form-field {
   width: 100%;
 }
 
+.exam-title {
+  display: flex;
+  justify-content: space-between;
+  .exam-subject {
+    width: 90%;
+  }
+  button {
+    width: max-content;
+  }
+}
 .notes-control {
   display: flex;
   button {

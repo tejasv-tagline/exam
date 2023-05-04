@@ -21,6 +21,10 @@ const routes: Routes = [
         component: ExamsComponent,
       },
       {
+        path: 'exams/:examId',
+        component: ExamFormComponent,
+      },
+      {
         path: 'exams/new',
         component: ExamFormComponent,
       },

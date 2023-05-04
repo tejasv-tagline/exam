@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { TeacherService } from '../../services/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-exam-form',
@@ -12,11 +13,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ExamFormComponent {
   examForm!: FormGroup;
+  examId!: string;
+  mode: string = 'create';
 
   constructor(
     private fb: FormBuilder,
     private teacherService: TeacherService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.examForm = this.fb.group({
       subjectName: [null, [Validators.required]],
@@ -25,7 +30,47 @@ export class ExamFormComponent {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe((res: any) => {
+      if (res && res?.examId !== 'new') {
+        console.log('res :>> ', res);
+        this.examId = res.examId;
+        this.mode = 'view';
+        this.getExamDetails();
+      }
+    });
+  }
+
+  getExamDetails() {
+    this.teacherService.getExamDetails(this.examId).subscribe((res) => {
+      if (res && res.data) {
+        res.data.notes.forEach((note: string, index: number) => {
+          index && this.fNotes.push(this.noteControl());
+        });
+        this.examForm.patchValue(this.createFormData(res.data));
+        this.examForm.disable();
+      }
+    });
+  }
+
+  createFormData(data: any) {
+    data.questions = data.questions.map((question: any, index: number) => {
+      index && this.fQuestions.push(this.questionControl());
+      const map: any = {};
+      question.options = {
+        a: question.options[0],
+        b: question.options[1],
+        c: question.options[2],
+        d: question.options[3],
+      };
+      for (let i in question.options) {
+        map[question.options[i]] = i;
+      }
+      question.answer = map[question.answer];
+      return question;
+    });
+    return data;
+  }
 
   get fNotes() {
     return this.examForm.controls['notes'] as FormArray;
@@ -49,12 +94,10 @@ export class ExamFormComponent {
   }
 
   addQuestion() {
-    console.log('this.fQuestions.length :>> ', this.fQuestions.length);
     if (this.fQuestions.valid) {
       this.fQuestions.push(this.questionControl());
-      console.log('this.examForm.value :>> ', this.examForm.value);
     } else {
-      console.error('IM ERROR');
+      this.snackBar.open('Please Fill Above Question First !', 'OK');
     }
   }
 
@@ -76,6 +119,11 @@ export class ExamFormComponent {
     this.fNotes.removeAt(index);
   }
 
+  editExam() {
+    this.examForm.enable();
+    this.mode = 'edit';
+  }
+
   submit() {
     this.examForm.value.questions = this.examForm.value.questions.map(
       (question: any) => {
@@ -84,12 +132,28 @@ export class ExamFormComponent {
         return question;
       }
     );
-    console.log('this.examForm.value :>> ', this.examForm.value);
+    if (this.mode === 'create') {
+      this.teacherService.createExam(this.examForm.value).subscribe((res) => {
+        if (res && res?.data) {
+          this.snackBar.open('Exam Created Successfully !', 'OK');
+          this.examId = res.data._id;
+          this.enableViewMode();
+        }
+      });
+    } else {
+      this.teacherService
+        .updateExam(this.examForm.value, this.examId)
+        .subscribe((res: any) => {
+          if (res && res?.data) {
+            this.snackBar.open('Exam Updated Successfully !', 'OK');
+            this.mode = 'view';
+            this.examForm.disable();
+          }
+        });
+    }
+  }
 
-    this.teacherService.createExam(this.examForm.value).subscribe((res) => {
-      if (res && res?.data) {
-        this.snackBar.open('Exam Created Successfully !', 'OK');
-      }
-    });
+  enableViewMode() {
+    this.router.navigate(['teacher/exams/' + this.examId]);
   }
 }
