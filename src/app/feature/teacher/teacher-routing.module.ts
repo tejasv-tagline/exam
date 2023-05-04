@@ -4,6 +4,7 @@ import { TeacherComponent } from './teacher.component';
 import { ExamsComponent } from './components/exams/exams.component';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
+import { ExamFormComponent } from './components/exam-form/exam-form.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'exams',
         component: ExamsComponent,
+      },
+      {
+        path: 'exams/new',
+        component: ExamFormComponent,
       },
       {
         path: 'students',

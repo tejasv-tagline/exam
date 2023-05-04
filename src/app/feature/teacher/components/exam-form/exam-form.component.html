@@ -1,0 +1,169 @@
+<div class="wrapper">
+  <mat-card class="exam-card">
+    <mat-card-content>
+      <form [formGroup]="examForm" (ngSubmit)="submit()">
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Subject Name"
+              formControlName="subjectName"
+            />
+          </mat-form-field>
+        </p>
+
+        <ng-container formArrayName="questions">
+          <ng-container
+            *ngFor="let control of fQuestions.controls; let i = index"
+          >
+            <div [formGroupName]="i">
+              <div class="question-group">
+                <mat-form-field>
+                  <input
+                    type="text"
+                    matInput
+                    [placeholder]="'Question ' + (i + 1)"
+                    formControlName="question"
+                  />
+                </mat-form-field>
+                <button
+                  mat-fab
+                  color="warn"
+                  type="button"
+                  class="add-question-btn"
+                  (click)="removeQuestion(i)"
+                >
+                  -
+                </button>
+                <button
+                  mat-fab
+                  color="primary"
+                  type="button"
+                  class="add-question-btn"
+                  (click)="addQuestion()"
+                >
+                  +
+                </button>
+              </div>
+
+              <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                formControlName="answer"
+              >
+                <div class="question-options" formGroupName="options">
+                  <div class="option-group">
+                    <mat-radio-button
+                      class="example-radio-button"
+                      [value]="'a'"
+                    >
+                    </mat-radio-button>
+                    <mat-form-field>
+                      <input
+                        type="text"
+                        matInput
+                        placeholder="Option A"
+                        formControlName="a"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="option-group">
+                    <mat-radio-button
+                      class="example-radio-button"
+                      [value]="'b'"
+                    >
+                    </mat-radio-button>
+                    <mat-form-field>
+                      <input
+                        type="text"
+                        matInput
+                        placeholder="Option B"
+                        formControlName="b"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="option-group">
+                    <mat-radio-button
+                      class="example-radio-button"
+                      [value]="'c'"
+                    >
+                    </mat-radio-button>
+                    <mat-form-field>
+                      <input
+                        type="text"
+                        matInput
+                        placeholder="Option C"
+                        formControlName="c"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="option-group">
+                    <mat-radio-button
+                      class="example-radio-button"
+                      [value]="'d'"
+                    >
+                    </mat-radio-button>
+                    <mat-form-field>
+                      <input
+                        type="text"
+                        matInput
+                        placeholder="Option D"
+                        formControlName="d"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <ng-container formArrayName="notes">
+          <ng-container *ngFor="let control of fNotes.controls; let i = index">
+            <p class="notes-control">
+              <mat-form-field>
+                <input
+                  type="text"
+                  matInput
+                  [placeholder]="'Note ' + (i + 1)"
+                  [formControlName]="i"
+                />
+              </mat-form-field>
+              <button
+                mat-fab
+                *ngIf="i"
+                color="warn"
+                type="button"
+                aria-label="Example icon button with a delete icon"
+                (click)="removeNote(i)"
+              >
+                -
+              </button>
+              <button
+                mat-fab
+                color="primary"
+                type="button"
+                aria-label="Example icon button with a delete icon"
+                (click)="addNote()"
+              >
+                +
+              </button>
+            </p>
+          </ng-container>
+        </ng-container>
+
+        <div class="button">
+          <button
+            type="submit"
+            [disabled]="examForm.invalid"
+            mat-raised-button
+            color="primary"
+          >
+            Create Exam
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

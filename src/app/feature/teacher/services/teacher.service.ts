@@ -16,4 +16,8 @@ export class TeacherService {
   getExams(): Observable<any> {
     return this.http.get(environment.baseURL + 'teacher/exam-list');
   }
+
+  createExam(data: any): Observable<any> {
+    return this.http.post(environment.baseURL + 'teacher/create-exam', data);
+  }
 }

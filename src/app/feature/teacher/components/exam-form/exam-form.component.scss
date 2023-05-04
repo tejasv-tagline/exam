@@ -1,0 +1,27 @@
+mat-form-field {
+  width: 100%;
+}
+
+.notes-control {
+  display: flex;
+  button {
+    margin-left: 20px;
+  }
+}
+.question-group {
+  display: flex;
+  .add-question-btn {
+    margin-left: 20px;
+  }
+}
+
+.question-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .option-group {
+    width: 48%;
+    display: flex;
+    align-items: center;
+  }
+}
