@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +14,10 @@ export class ExamsComponent {
   exams = new MatTableDataSource<any, any>();
   @ViewChild('examPaginator') paginator!: MatPaginator;
 
-  constructor(private teacherService: TeacherService) {}
+  constructor(
+    private teacherService: TeacherService,
+    private snackbar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.getExams();
@@ -23,6 +27,16 @@ export class ExamsComponent {
     this.teacherService.getExams().subscribe((res) => {
       this.exams = new MatTableDataSource(res.data);
       setTimeout(() => (this.exams.paginator = this.paginator));
+    });
+  }
+
+  deleteExam(examId: string) {
+    this.teacherService.deleteExam(examId).subscribe((res) => {
+      console.log('res :>> ', res);
+      if (res) {
+        this.snackbar.open('Exam Deleted Successfully !', 'OK');
+        this.getExams();
+      }
     });
   }
 }

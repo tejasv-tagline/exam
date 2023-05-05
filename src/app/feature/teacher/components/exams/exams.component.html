@@ -19,6 +19,7 @@
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let element">
         <a [routerLink]="[element._id]">View</a>
+        <a href="javascript:void()" (click)="deleteExam(element._id)">Delete</a>
       </td>
     </ng-container>
 
