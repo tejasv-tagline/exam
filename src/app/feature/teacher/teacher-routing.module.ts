@@ -7,37 +7,37 @@ import { StudentProfileComponent } from './components/student-profile/student-pr
 import { ExamFormComponent } from './components/exam-form/exam-form.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: TeacherComponent,
+  //   children: [
   {
     path: '',
-    component: TeacherComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'exams',
-        pathMatch: 'full',
-      },
-      {
-        path: 'exams',
-        component: ExamsComponent,
-      },
-      {
-        path: 'exams/:examId',
-        component: ExamFormComponent,
-      },
-      {
-        path: 'exams/new',
-        component: ExamFormComponent,
-      },
-      {
-        path: 'students',
-        component: StudentsComponent,
-      },
-      {
-        path: 'students/:id',
-        component: StudentProfileComponent,
-      },
-    ],
+    redirectTo: 'exams',
+    pathMatch: 'full',
   },
+  {
+    path: 'exams',
+    component: ExamsComponent,
+  },
+  {
+    path: 'exams/:examId',
+    component: ExamFormComponent,
+  },
+  {
+    path: 'exams/new',
+    component: ExamFormComponent,
+  },
+  {
+    path: 'students',
+    component: StudentsComponent,
+  },
+  {
+    path: 'students/:id',
+    component: StudentProfileComponent,
+  },
+  //   ],
+  // },
 ];
 
 @NgModule({

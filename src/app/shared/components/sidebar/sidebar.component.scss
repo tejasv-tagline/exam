@@ -1,0 +1,26 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    height: 80px;
+    cursor: pointer;
+    width: 110px;
+  }
+}
+ul {
+  padding-left: 10px;
+  li {
+    list-style: none;
+    padding: 15px;
+    cursor: pointer;
+    i {
+      color: #000;
+    }
+    &.active,
+    &:hover {
+      background-color: var(--primary);
+      border-radius: 12px;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 const modules = [
   CommonModule,
@@ -17,6 +18,7 @@ const modules = [
   MatPaginatorModule,
   MatRadioModule,
   MatSnackBarModule,
+  MatSelectModule
 ];
 @NgModule({
   declarations: [],
