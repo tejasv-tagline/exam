@@ -1,1 +1,62 @@
-<p>exam-paper works!</p>
+<div class="header">
+  <breadcrumb [breadCrumb]="breadCrumb"></breadcrumb>
+
+  <div>
+    <span id="timer"></span
+    ><ng-container *ngIf="isStarted"> Minutes left </ng-container>
+  </div>
+</div>
+<mat-card class="exam-card">
+  <mat-card-content>
+    <form [formGroup]="examForm" (ngSubmit)="submit()">
+      <ng-container
+        formArrayName="answers"
+        *ngFor="let question of fControls.controls; let i = index"
+      >
+        <div class="question-group" [formGroupName]="i">
+          <p class="question">
+            <span>{{ i + 1 }}. </span>
+            <span>
+              {{ $any(question).controls["question"].value }}
+            </span>
+          </p>
+          <div class="options">
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"
+              formControlName="answer"
+            >
+              <ng-container
+                *ngFor="
+                  let option of $any($any(question).controls['options'].value)
+                "
+              >
+                <div class="question-options">
+                  <div class="option-group">
+                    <mat-radio-button
+                      class="example-radio-button"
+                      [value]="option"
+                    >
+                      <span class="label">{{ option }}</span>
+                    </mat-radio-button>
+                  </div>
+                </div>
+              </ng-container>
+            </mat-radio-group>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isStarted">
+        <button
+          class="submit-btn"
+          type="submit"
+          [disabled]="examForm.invalid"
+          mat-raised-button
+          color="primary"
+        >
+          Submit Exam
+        </button>
+      </ng-container>
+    </form>
+  </mat-card-content>
+</mat-card>

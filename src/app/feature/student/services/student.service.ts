@@ -14,4 +14,18 @@ export class StudentService {
   getExams(): Observable<any> {
     return this.http.get(this.baseURL + 'all-exam-list');
   }
+
+  startExam(examId: string): Observable<any> {
+    return this.http.get(this.baseURL + 'start-exam', {
+      params: { examId: examId },
+    });
+  }
+
+  endExam(data: any, examId: string): Observable<any> {
+    return this.http.post(this.baseURL + 'end-exam', data, {
+      params: {
+        examId: examId,
+      },
+    });
+  }
 }
