@@ -8,6 +8,7 @@ import { StudentProfileComponent } from './components/student-profile/student-pr
 import { ExamFormComponent } from './components/exam-form/exam-form.component';
 import { MatModule } from 'src/app/core/mat/mat.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentProfileComponent,
     ExamFormComponent,
   ],
-  imports: [CommonModule, TeacherRoutingModule, MatModule, ReactiveFormsModule],
+
+  imports: [
+    CommonModule,
+    TeacherRoutingModule,
+    MatModule,
+    ReactiveFormsModule,
+    BreadcrumbComponent,
+  ],
 })
 export class TeacherModule {}

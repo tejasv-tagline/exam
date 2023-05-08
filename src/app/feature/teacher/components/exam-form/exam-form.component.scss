@@ -1,3 +1,13 @@
+:host ::ng-deep .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+  .breadcrumb {
+    margin-bottom: 0;
+  }
+}
+
 mat-form-field {
   width: 100%;
 }
@@ -5,9 +15,6 @@ mat-form-field {
 .exam-title {
   display: flex;
   justify-content: space-between;
-  .exam-subject {
-    width: 90%;
-  }
   button {
     width: max-content;
   }

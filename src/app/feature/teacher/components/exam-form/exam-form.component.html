@@ -1,3 +1,17 @@
+<div class="header">
+  <breadcrumb [breadCrumb]="breadCrumb"></breadcrumb>
+  <ng-container *ngIf="mode === 'view'">
+    <button
+      type="button"
+      (click)="editExam()"
+      mat-raised-button
+      color="primary"
+    >
+      Edit Exam
+    </button>
+  </ng-container>
+</div>
+
 <div class="wrapper">
   <mat-card class="exam-card">
     <mat-card-content>
@@ -11,16 +25,6 @@
               formControlName="subjectName"
             />
           </mat-form-field>
-          <ng-container *ngIf="mode === 'view'">
-            <button
-              type="button"
-              (click)="editExam()"
-              mat-raised-button
-              color="primary"
-            >
-              Edit Exam
-            </button>
-          </ng-container>
         </p>
 
         <ng-container formArrayName="questions">

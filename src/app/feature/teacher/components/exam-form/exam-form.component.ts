@@ -15,6 +15,16 @@ export class ExamFormComponent {
   examForm!: FormGroup;
   examId!: string;
   mode: string = 'create';
+  breadCrumb = [
+    {
+      label: 'Exams',
+      url: '/teacher/exams',
+    },
+    {
+      label: 'Create',
+      isActive: true,
+    },
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -36,6 +46,7 @@ export class ExamFormComponent {
         console.log('res :>> ', res);
         this.examId = res.examId;
         this.mode = 'view';
+        this.breadCrumb[1].label = 'View';
         this.getExamDetails();
       }
     });
@@ -122,6 +133,7 @@ export class ExamFormComponent {
   editExam() {
     this.examForm.enable();
     this.mode = 'edit';
+    this.breadCrumb[1].label = 'Edit';
   }
 
   submit() {

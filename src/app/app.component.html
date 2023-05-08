@@ -5,13 +5,18 @@
   type="ball-pulse-sync"
   [fullScreen]="true"
 ></ngx-spinner>
-<mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
-    <app-sidebar></app-sidebar>
-  </mat-drawer>
+<ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
+  <mat-drawer-container class="main-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
+      <app-sidebar></app-sidebar>
+    </mat-drawer>
 
-  <app-header (toggle)="drawer.toggle()"></app-header>
-  <div class="main-content">
-    <router-outlet></router-outlet>
-  </div>
-</mat-drawer-container>
+    <app-header (toggle)="drawer.toggle()"></app-header>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</ng-container>
+<ng-template #unAuthenticated>
+  <router-outlet></router-outlet>
+</ng-template>

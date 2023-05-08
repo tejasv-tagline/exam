@@ -12,6 +12,13 @@ import { TeacherService } from '../../services/teacher.service';
 export class ExamsComponent {
   displayedColumns: string[] = ['no', 'subjectName', 'action'];
   exams = new MatTableDataSource<any, any>();
+  breadCrumb: any = [
+    {
+      label: 'Exams',
+      isActive: true,
+    },
+  ];
+
   @ViewChild('examPaginator') paginator!: MatPaginator;
 
   constructor(

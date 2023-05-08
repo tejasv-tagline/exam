@@ -1,3 +1,10 @@
+<div class="header">
+  <breadcrumb [breadCrumb]="breadCrumb"></breadcrumb>
+  <button type="button" routerLink="new" mat-raised-button color="primary">
+    Create Exam
+  </button>
+</div>
+
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="exams">
     <!-- Position Column -->

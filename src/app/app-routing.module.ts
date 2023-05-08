@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./feature/teacher/teacher.module').then((m) => m.TeacherModule),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({

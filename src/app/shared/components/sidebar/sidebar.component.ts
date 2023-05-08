@@ -21,10 +21,5 @@ export class SidebarComponent {
       url: 'teacher/students',
       icon: 'fa-solid fa-users',
     },
-    {
-      label: 'Create Exam',
-      url: 'teacher/exams/new',
-      icon: 'fa-solid fa-pencil',
-    },
   ];
 }

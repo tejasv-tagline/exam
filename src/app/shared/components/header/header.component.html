@@ -1,7 +1,7 @@
-<div class="header">
+<div class="header" *ngIf="currentUser$ | async as user">
   <p class="welcome-back">
     <i class="fa-solid fa-bars" (click)="toggleSidebar()"></i>
-    Welcome back, John
+    Welcome back, {{ user.name }}
   </p>
   <div class="profile-section">
     <div class="profile" [matMenuTriggerFor]="menu">
@@ -9,13 +9,13 @@
         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
         alt="Profile Image"
       />
-      <p>Tejas Variya</p>
+      <p>{{ user.name }}</p>
     </div>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <span>Profile</span>
       </button>
-      <button mat-menu-item>
+      <button (click)="logout()" mat-menu-item>
         <span>Logout</span>
       </button>
     </mat-menu>

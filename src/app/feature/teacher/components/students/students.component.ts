@@ -11,6 +11,13 @@ import { MatTableDataSource } from '@angular/material/table';
 export class StudentsComponent {
   displayedColumns: string[] = ['no', 'name', 'email', 'action'];
   students = new MatTableDataSource<any, any>();
+  breadCrumb = [
+    {
+      label: 'Students',
+      isActive: true,
+    },
+  ];
+
   @ViewChild('studentPaginator') paginator!: MatPaginator;
 
   constructor(private teacherService: TeacherService) {}
