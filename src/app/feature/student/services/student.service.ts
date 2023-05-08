@@ -28,4 +28,8 @@ export class StudentService {
       },
     });
   }
+
+  getResults(): Observable<any> {
+    return this.http.get(this.baseURL + 'exam-list-with-result-and-rank');
+  }
 }

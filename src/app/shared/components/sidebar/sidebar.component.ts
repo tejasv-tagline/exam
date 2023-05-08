@@ -29,7 +29,13 @@ export class SidebarComponent {
     },
     {
       label: 'Exams',
-      url: 'student',
+      url: 'student/exams',
+      icon: 'fa-solid fa-book',
+      accessibleTo: 'student',
+    },
+    {
+      label: 'Results',
+      url: 'student/results',
       icon: 'fa-solid fa-book',
       accessibleTo: 'student',
     },
