@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatModule } from './core/mat/mat.module';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     MatModule,
     SidebarComponent,
     HeaderComponent,
+    NgxSpinnerModule.forRoot({ type: 'ball-pulse-sync' }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
