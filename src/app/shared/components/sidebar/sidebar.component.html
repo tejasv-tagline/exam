@@ -1,13 +1,15 @@
 <div class="logo">
   <img src="assets/img/logo.svg" alt="Logo" />
 </div>
-<ul>
-  <li
-    *ngFor="let item of items"
-    [routerLink]="[item.url]"
-    routerLinkActive="active"
-  >
-    <i [ngClass]="item.icon"></i>
-    {{ item.label }}
-  </li>
-</ul>
+<ng-container *ngIf="currentUser$ | async as user">
+  <ul>
+    <ng-container *ngFor="let item of items">
+      <ng-container *ngIf="item.accessibleTo === user.role">
+        <li [routerLink]="[item.url]" routerLinkActive="active">
+          <i [ngClass]="item.icon"></i>
+          {{ item.label }}
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+</ng-container>

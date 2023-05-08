@@ -17,8 +17,7 @@ export class HeaderInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     this.spinner.show();
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTI0OTM4YTdkNmI2ZWE1MDhhZjRjMiIsImVtYWlsIjoidGp2QHRhZ2xpbmVpbmZvdGVjaC5jb20iLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY4MzExNDUyM30.MpGB3Bk7DmTHPh8_B-FOraFKY35NVRhgAoqn7TuMKXY';
+    const token = localStorage.getItem('token');
     if (token)
       request = request.clone({
         setHeaders: {
