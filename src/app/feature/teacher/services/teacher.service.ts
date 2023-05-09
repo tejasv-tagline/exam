@@ -39,4 +39,10 @@ export class TeacherService {
       params: { examId: examId },
     });
   }
+
+  getResults(examId: string): Observable<any> {
+    return this.http.get(this.baseURL + 'student-list-which-give-exam-yet', {
+      params: { examId: examId },
+    });
+  }
 }

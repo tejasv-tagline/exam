@@ -5,12 +5,9 @@ import { ExamsComponent } from './components/exams/exams.component';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 import { ExamFormComponent } from './components/exam-form/exam-form.component';
+import { ResultComponent } from './components/result/result.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: TeacherComponent,
-  //   children: [
   {
     path: '',
     redirectTo: 'exams',
@@ -36,8 +33,10 @@ const routes: Routes = [
     path: 'students/:id',
     component: StudentProfileComponent,
   },
-  //   ],
-  // },
+  {
+    path: 'exams/:examId/results',
+    component: ResultComponent,
+  },
 ];
 
 @NgModule({
