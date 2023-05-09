@@ -12,6 +12,7 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
 import { ResultComponent } from './components/result/result.component';
 import { ProfileComponent } from 'src/app/shared/components/profile/profile.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DataTableComponent } from 'src/app/shared/components/table/datatable.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BreadcrumbComponent,
     ProfileComponent,
     MatExpansionModule,
+    DataTableComponent,
   ],
 })
 export class TeacherModule {}

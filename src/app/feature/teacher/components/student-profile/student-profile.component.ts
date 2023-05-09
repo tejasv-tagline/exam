@@ -29,6 +29,20 @@ export class StudentProfileComponent {
   };
   studentId!: string;
   studentDetails: any;
+  columns = [
+    {
+      field: 'subjectName',
+      label: 'Subject Name',
+    },
+    {
+      field: 'score',
+      label: 'Score',
+    },
+    {
+      field: 'rank',
+      label: 'Rank',
+    },
+  ];
 
   constructor(
     private teacherService: TeacherService,
