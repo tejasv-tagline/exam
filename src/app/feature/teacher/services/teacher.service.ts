@@ -45,4 +45,10 @@ export class TeacherService {
       params: { examId: examId },
     });
   }
+
+  getStudentDetails(studentId: string): Observable<any> {
+    return this.http.get(this.baseURL + 'student-detail', {
+      params: { studentId: studentId },
+    });
+  }
 }

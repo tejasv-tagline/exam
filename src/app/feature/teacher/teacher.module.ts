@@ -10,6 +10,8 @@ import { MatModule } from 'src/app/core/mat/mat.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 import { ResultComponent } from './components/result/result.component';
+import { ProfileComponent } from 'src/app/shared/components/profile/profile.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ResultComponent } from './components/result/result.component';
     MatModule,
     ReactiveFormsModule,
     BreadcrumbComponent,
+    ProfileComponent,
+    MatExpansionModule,
   ],
 })
 export class TeacherModule {}
