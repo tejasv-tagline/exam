@@ -1,0 +1,15 @@
+:host ::ng-deep .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+  .breadcrumb {
+    margin-bottom: 0;
+  }
+}
+
+.actions {
+  i:last-child {
+    margin-left: 10px;
+  }
+}

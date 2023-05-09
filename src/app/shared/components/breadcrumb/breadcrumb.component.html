@@ -1,0 +1,15 @@
+<div class="breadcrumb">
+  <ng-container
+    *ngFor="let title of breadCrumb; let i = index; let last = last"
+  >
+    <p
+      [ngClass]="[title.isActive ? 'active-title' : 'inactive-title']"
+      (click)="navigate(title)"
+    >
+      {{ title.label }}
+    </p>
+    <ng-container *ngIf="breadCrumb.length && !last">
+      <span class="slash">&nbsp;/&nbsp;</span>
+    </ng-container>
+  </ng-container>
+</div>

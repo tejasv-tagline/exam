@@ -1,10 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #f19f00;
+} /* You can add global styles to this file, and also import other style files */
 
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+i {
+  color: var(--primary);
+}
+
+::ng-deep .mat-mdc-table .mdc-data-table__content {
+  max-height: 520px !important;
 }

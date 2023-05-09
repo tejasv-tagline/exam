@@ -1,0 +1,44 @@
+:host ::ng-deep .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+  .breadcrumb {
+    margin-bottom: 0;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.exam-title {
+  display: flex;
+  justify-content: space-between;
+  button {
+    width: max-content;
+  }
+}
+.notes-control {
+  display: flex;
+  button {
+    margin-left: 20px;
+  }
+}
+.question-group {
+  display: flex;
+  .add-question-btn {
+    margin-left: 20px;
+  }
+}
+
+.question-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .option-group {
+    width: 48%;
+    display: flex;
+    align-items: center;
+  }
+}
