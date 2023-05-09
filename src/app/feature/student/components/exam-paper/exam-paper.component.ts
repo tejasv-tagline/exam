@@ -48,12 +48,12 @@ export class ExamPaperComponent {
   }
 
   getQuestions() {
-    this.studentService.startExam(this.examId).subscribe((res) => {
-      if (res?.data) {
-        res.data.forEach((question: any) => {
+    this.route.data.subscribe((res) => {
+      if (res[0]?.data) {
+        res[0].data.forEach((question: any) => {
           this.addQuestionGroup(question);
         });
-        this.startTimer(res.data.length * 60);
+        this.startTimer(res[0].data.length * 60);
       }
     });
   }

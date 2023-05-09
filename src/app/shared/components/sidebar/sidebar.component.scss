@@ -9,18 +9,20 @@
   }
 }
 ul {
-  padding-left: 10px;
+  padding-left: 0;
   li {
     list-style: none;
-    padding: 15px;
+    padding: 1rem;
+    margin: 0 1rem 5px 1rem;
     cursor: pointer;
     i {
       color: #000;
     }
     &.active,
     &:hover {
-      background-color: var(--primary);
       border-radius: 12px;
+      background-color: var(--primary);
+      transition: 0.3s ease;
     }
   }
 }

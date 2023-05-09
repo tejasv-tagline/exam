@@ -29,7 +29,8 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user') || '');
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   }
 
   isAuthenticated() {
@@ -45,8 +46,8 @@ export class AuthService {
   logout() {
     try {
       localStorage.clear();
-      this.router.navigate(['login']);
       this.isAuthenticated();
+      this.router.navigate(['/auth/login']);
     } catch {
       console.error('Error logout');
     }

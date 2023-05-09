@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ExamListComponent } from './components/exam-list/exam-list.component';
 import { ExamPaperComponent } from './components/exam-paper/exam-paper.component';
 import { ResultsComponent } from './components/results/results.component';
+import { ExamPaperResolver } from './resolvers/exam-paper.resolver';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
   {
     path: 'exams/:examId',
     component: ExamPaperComponent,
+    resolve: [ExamPaperResolver],
   },
   {
     path: 'results',
