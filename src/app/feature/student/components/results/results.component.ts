@@ -15,10 +15,26 @@ export class ResultsComponent {
       isActive: true,
     },
   ];
-  displayedColumns: string[] = ['no', 'subjectName', 'score', 'rank'];
-
-  results = new MatTableDataSource<any, any>();
-  @ViewChild('examPaginator') paginator!: MatPaginator;
+  columns = [
+    {
+      field: 'no',
+      label: 'No.',
+      type: 'serial',
+    },
+    {
+      field: 'subjectName',
+      label: 'Subject Name',
+    },
+    {
+      field: 'score',
+      label: 'Score',
+    },
+    {
+      field: 'rank',
+      label: 'Rank',
+    },
+  ];
+  results: any;
 
   constructor(private studentService: StudentService) {}
 
@@ -28,10 +44,8 @@ export class ResultsComponent {
 
   getResults() {
     this.studentService.getResults().subscribe((res) => {
-      console.log('res :>> ', res);
       if (res?.data[0]?.results.length) {
-        this.results = new MatTableDataSource(res.data[0]?.results);
-        setTimeout(() => (this.results.paginator = this.paginator));
+        this.results = res.data[0]?.results;
       }
     });
   }

@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { StudentService } from '../../services/student.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { ACTION } from 'src/app/shared/interfaces/enums';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exam-list',
@@ -15,12 +15,31 @@ export class ExamListComponent {
       isActive: true,
     },
   ];
-  displayedColumns: string[] = ['no', 'subjectName', 'action'];
+  columns = [
+    {
+      label: 'No.',
+      field: 'no',
+      type: 'serial',
+    },
+    {
+      field: 'subjectName',
+      label: 'Subject Name',
+    },
+    {
+      field: 'action',
+      label: 'Action',
+      type: 'action',
+      actions: [
+        {
+          icon: 'fa-solid fa-pencil',
+          label: ACTION.START_EXAM,
+        },
+      ],
+    },
+  ];
+  exams: any;
 
-  exams = new MatTableDataSource<any, any>();
-  @ViewChild('examPaginator') paginator!: MatPaginator;
-
-  constructor(private studentService: StudentService) {}
+  constructor(private studentService: StudentService, private router: Router) {}
 
   ngOnInit() {
     this.getExams();
@@ -28,11 +47,16 @@ export class ExamListComponent {
 
   getExams() {
     this.studentService.getExams().subscribe((res) => {
-      console.log('res :>> ', res);
       if (res?.data) {
-        this.exams = new MatTableDataSource(res.data);
-        setTimeout(() => (this.exams.paginator = this.paginator));
+        this.exams = res.data;
       }
     });
+  }
+
+  actionClick(action: any) {
+    switch (action.label) {
+      case ACTION.START_EXAM:
+        this.router.navigate(['student/exams', action.data._id]);
+    }
   }
 }
