@@ -1,0 +1,46 @@
+<ng-container *ngIf="profileData">
+  <form [formGroup]="profileForm" class="profile">
+    <div class="profile-img">
+      <img [src]="profileData.profileImage" alt="Profile" />
+    </div>
+    <div class="profile-details">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          [placeholder]="'Name'"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="email"
+          disabled
+          matInput
+          [value]="profileData.email"
+          [placeholder]="'Email'"
+        />
+      </mat-form-field>
+    </div>
+    <ng-container *ngIf="isEditable">
+      <div>
+        <button
+          (click)="profileForm.enable()"
+          mat-raised-button
+          color="primary"
+        >
+          Edit Profile
+        </button>
+
+        <button
+          [disabled]="profileForm.invalid"
+          (click)="submit()"
+          mat-raised-button
+          color="primary"
+        >
+          Update
+        </button>
+      </div>
+    </ng-container>
+  </form>
+</ng-container>

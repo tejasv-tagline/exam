@@ -43,10 +43,10 @@ export class AuthService {
     this.currentUserSubject$.next(user);
   }
 
-  logout() {
+  async logout() {
     try {
-      localStorage.clear();
-      this.isAuthenticated();
+      await localStorage.clear();
+      await this.isAuthenticated();
       this.router.navigate(['/auth/login']);
     } catch {
       console.error('Error logout');

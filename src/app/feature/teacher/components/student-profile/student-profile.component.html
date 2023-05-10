@@ -1,1 +1,16 @@
-<p>student-profile works!</p>
+<breadcrumb [breadCrumb]="breadCrumb"></breadcrumb>
+<ng-container *ngIf="studentDetails">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header> Student Profile </mat-expansion-panel-header>
+      <profile [profile]="studentDetails"></profile>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header> Student Results </mat-expansion-panel-header>
+      <datatable
+        [displayedColumns]="columns"
+        [dataSource]="studentDetails.results"
+      ></datatable>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-container>

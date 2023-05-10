@@ -11,10 +11,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent {
-  displayedColumns: string[] = ['no', 'studentName', 'score', 'rank'];
-  results = new MatTableDataSource<any, any>();
-
-  examId!: string;
   breadCrumb: any = [
     {
       label: 'Exams',
@@ -25,8 +21,27 @@ export class ResultComponent {
       isActive: true,
     },
   ];
-
-  @ViewChild('examPaginator') paginator!: MatPaginator;
+  results: any;
+  examId!: string;
+  columns: any = [
+    {
+      label: 'No.',
+      field: 'no',
+      type: 'serial',
+    },
+    {
+      label: 'Student Name',
+      field: 'studentName',
+    },
+    {
+      field: 'score',
+      label: 'Score',
+    },
+    {
+      field: 'rank',
+      label: 'Rank',
+    },
+  ];
 
   constructor(
     private teacherService: TeacherService,
@@ -46,8 +61,8 @@ export class ResultComponent {
   getResults() {
     this.teacherService.getResults(this.examId).subscribe((res) => {
       if (res?.data) {
-        this.results = new MatTableDataSource(res.data);
-        setTimeout(() => (this.results.paginator = this.paginator));
+        console.log('res.data :>> ', res.data);
+        this.results = res.data;
       }
     });
   }

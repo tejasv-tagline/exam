@@ -1,0 +1,25 @@
+.actions {
+  i {
+    cursor: pointer;
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}
+
+.image-cell {
+  span {
+    display: flex;
+    align-items: center;
+    img {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
+}
+
+.no-data-found {
+  font-weight: 500;
+}
