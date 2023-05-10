@@ -1,7 +1,8 @@
 .header {
   height: 60px;
   padding: 10px;
-  background-color: var(--primary);
+  background-color: var(--primary-color);
+  color: #fff;
   display: flex;
   align-items: center;
   .welcome-back {
@@ -11,7 +12,7 @@
     i {
       margin-right: 1rem;
       cursor: pointer;
-      color: #000;
+      color: #fff;
     }
   }
   .profile-section {

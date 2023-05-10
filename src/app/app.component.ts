@@ -7,7 +7,7 @@ import { AuthService } from './feature/auth/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'exam';
+  title = 'Examin';
   isAuthenticated$ = this.authService.isAuthenticated$;
 
   constructor(private authService: AuthService) {}

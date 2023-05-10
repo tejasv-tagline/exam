@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatModule } from 'src/app/core/mat/mat.module';
 import { MatPaginator } from '@angular/material/paginator';
@@ -20,7 +26,6 @@ export class DataTableComponent {
 
   @Input() set dataSource(value: any) {
     this.data = new MatTableDataSource(value);
-    console.log('this.tablePaginator :>> ', this.paginator);
     setTimeout(() => {
       this.data.paginator = this.paginator;
     });
@@ -31,8 +36,14 @@ export class DataTableComponent {
     this.matColumns = value.map((val: any) => (val = val.field));
   }
 
-  ngAfterViewInit() {
-    console.log('this.paginator :>> ', this.paginator);
-    console.log('this.data :>> ', this.data);
+  @Input() showSerialCol: boolean = false;
+  @Output() onActionClick = new EventEmitter();
+
+  actionClick(label: string, el: any) {
+    const data = {
+      label: label,
+      data: el,
+    };
+    this.onActionClick.emit(data);
   }
 }

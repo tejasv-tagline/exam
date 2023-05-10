@@ -2,12 +2,41 @@
   <ng-container *ngFor="let column of columns">
     <ng-container [matColumnDef]="column.field">
       <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
-      <td mat-cell *matCellDef="let element">{{ element[column.field] }}</td>
+      <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="'serial'">
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+        <ng-container *ngSwitchCase="'img'">
+          <td class="image-cell" mat-cell *matCellDef="let element">
+            <span>
+              <img [src]="element[column['imgPath']]" alt="Profile" />{{
+                element[column.field]
+              }}
+            </span>
+          </td>
+        </ng-container>
+        <ng-container *ngSwitchCase="'action'">
+          <td class="actions" mat-cell *matCellDef="let element">
+            <i
+              *ngFor="let action of column.actions"
+              [ngClass]="action.icon"
+              (click)="actionClick(action.label, element)"
+            ></i>
+          </td>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <td mat-cell *matCellDef="let element">
+            {{ element[column.field] }} {{ column.type }}
+          </td>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="matColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: matColumns"></tr>
+  <div class="no-data-found" *matNoDataRow>No data found</div>
 </table>
 <mat-paginator
   #examPaginator
